@@ -33,14 +33,14 @@
 
 buildPythonPackage rec {
   pname = "mistral-common";
-  version = "1.8.8";
+  version = "1.11.0";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "mistralai";
     repo = "mistral-common";
     tag = "v${version}";
-    hash = "sha256-rvW2idAqdCZi7+DsHJXczJKbfceZQ4lQyHScLOqxFIc=";
+    hash = "sha256-DejbLY2i6Hp1J+spxMut5RKugj7rDyrZmp6v+5wqyWY=";
   };
 
   build-system = [ setuptools ];
@@ -110,6 +110,11 @@ buildPythonPackage rec {
 
     # AssertionError, Extra items in the right set
     "test_openai_chat_fields"
+  ];
+
+  disabledTestPaths = [
+    # Optional dependency llguidance not satisfied
+    "tests/guidance"
   ];
 
   meta = {
